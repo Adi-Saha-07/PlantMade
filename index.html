@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PlantMate — Your Plant Delivery Partner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Zomato-style plant delivery website for hackathon. Beautiful animations, user login, signup, delivery and store registration.">
+</head>
+<body>
+  <canvas id="bg"></canvas>
+  <header class="nav">
+    <div class="logo" onclick="Router.go('home')">
+      <svg viewBox="0 0 64 64" aria-hidden="true" class="leaf"><path d="M52 6C30 6 12 24 12 46c0 6 2 12 6 16C42 62 58 42 58 22c0-6-2-12-6-16Z" /></svg>
+      <span>PlantMate</span>
+    </div>
+    <nav id="navbar">
+  <button class="menu-toggle" id="menuToggle">☰</button>
+  <div class="links">
+    <a href="#home" data-route="home">Home</a>
+    <a href="#catalog" data-route="catalog">Plants</a>
+    <a href="#login" data-route="login" class="guestOnly">Login</a>
+    <a href="#signup" data-route="signup" class="guestOnly">Sign Up</a>
+    <a href="#delivery" data-route="delivery" class="guestOnly">Delivery Register</a>
+    <a href="#store" data-route="store" class="guestOnly">Store Register</a>
+    <a href="#profile" data-route="profile" class="authOnly" style="display:none;">Profile</a>
+  </div>
+</nav>
+
+
+  </header>
+
+  <main id="app">
+    <section class="route active" id="home" data-page="home">
+      <div class="hero">
+        <div class="hero-copy">
+          <h1><span class="stroke">Order Plants</span> that make spaces happy 🌿</h1>
+          <p>Fresh plants, delivered fast. Handpicked nurseries, eco-friendly packaging, track your delivery live.</p>
+
+          <div class="cta">
+            <button class="btn primary" onclick="Router.go('catalog')">Browse Plants</button>
+          </div>
+
+          <ul class="badges">
+            <li>Free potting soil</li>
+            <li>24h delivery</li>
+            <li>Live order tracking</li>
+          </ul>
+        </div>
+        <div class="hero-art">
+          <div class="planet pot">
+            <img src="assets/pot.svg" alt="Pot" />
+          </div>
+          <div class="plant">
+            <img src="assets/plant.svg" alt="Plant" />
+          </div>
+          <div class="scooter">
+            <img src="assets/scooter.svg" alt="Delivery Scooter" />
+          </div>
+        </div>
+      </div>
+
+      <section class="features">
+        <div class="card glass">
+          <h3>Curated Nurseries</h3>
+          <p>We partner with the best local plant stores, so your plants arrive healthy and thriving.</p>
+        </div>
+        <div class="card glass">
+          <h3>Care Tips Built‑in</h3>
+          <p>Every order includes watering and sunlight guidance. Never guess again.</p>
+        </div>
+        <div class="card glass">
+          <h3>Seamless Experience</h3>
+          <p>Clean design, quick checkout, and delightful micro‑interactions to wow judges ✨</p>
+        </div>
+      </section>
+    </section>
+
+    <section class="route" id="catalog" data-page="catalog">
+      <h2 class="section-title">Popular Plants</h2>
+      <div class="grid" id="plantGrid">
+      </div>
+    </section>
+
+    <section class="route" id="login" data-page="login">
+      <form class="form glass" id="loginForm">
+        <h2>Login</h2>
+        <label>Email</label>
+        <input type="email" name="email" required placeholder="enter email i'd" />
+        <label>Password</label>
+        <input type="password" name="password" required placeholder="••••••••" />
+        <button class="btn primary" type="submit">Login</button>
+        <p class="alt">New here? <a href="#signup" onclick="Router.go('signup')">Create an account</a></p>
+      </form>
+    </section>
+
+    <section class="route" id="signup" data-page="signup">
+      <form class="form glass" id="signupForm">
+        <h2>Create Account</h2>
+        <div class="split">
+          <div>
+            <label>Full Name</label>
+            <input type="text" name="name" required placeholder="enter your name" />
+          </div>
+          <div>
+            <label>Phone</label>
+            <input type="tel" name="phone" required placeholder="+91 9XXXXXXXXX" pattern="[0-9+\-\s]{8,}"/>
+          </div>
+        </div>
+        <label>Email</label>
+        <input type="email" name="email" required placeholder="enter email i'd" />
+        <label>Password</label>
+        <input type="password" name="password" minlength="6" required placeholder="Min 6 characters" />
+        <button class="btn primary" type="submit">Sign Up</button>
+        <p class="alt">Already have an account? <a href="#login" onclick="Router.go('login')">Login</a></p>
+      </form>
+    </section>
+
+    <section class="route" id="delivery" data-page="delivery">
+      <form class="form glass" id="deliveryForm">
+        <h2>Delivery Partner Registration</h2>
+        <div class="split">
+          <div>
+            <label>Full Name</label>
+            <input type="text" name="name" required />
+          </div>
+          <div>
+            <label>Phone</label>
+            <input type="tel" name="phone" required placeholder="+91 9XXXXXXXXX" pattern="[0-9+\-\s]{8,}"/>
+          </div>
+        </div>
+        <label>Vehicle Type</label>
+        <select name="vehicle" required>
+          <option value="">Select</option>
+          <option>Scooter</option>
+          <option>Bike</option>
+          <option>Cycle</option>
+        </select>
+        <label>City</label>
+        <input type="text" name="city" required placeholder="enter city" />
+        <button class="btn primary" type="submit">Register as Delivery Partner</button>
+      </form>
+    </section>
+
+    <section class="route" id="store" data-page="store">
+      <form class="form glass" id="storeForm">
+        <h2>Plant Store Registration</h2>
+        <label>Store Name</label>
+        <input type="text" name="storeName" required placeholder="Green Leaf Nursery" />
+        <div class="split">
+          <div>
+            <label>Owner Name</label>
+            <input type="text" name="owner" required />
+          </div>
+          <div>
+            <label>Phone</label>
+            <input type="tel" name="phone" required placeholder="+91 9XXXXXXXXX" pattern="[0-9+\-\s]{8,}"/>
+          </div>
+        </div>
+        <label>Address</label>
+        <textarea name="address" rows="3" required placeholder="Street, Area, City, Pincode"></textarea>
+        <label>Specialities</label>
+        <input type="text" name="tags" placeholder="Succulents, Indoor, Air-purifying" />
+        <button class="btn primary" type="submit">Register Store</button>
+      </form>
+    </section>
+
+    <section class="route" id="profile" data-page="profile">
+  <div class="form glass">
+    <h2>Your Profile</h2>
+    <div id="profileDetails"></div>
+    <button class="btn primary" id="logoutBtn">Logout</button>
+  </div>
+</section>
+
+  </main>
+
+  <div id="toast"></div>
+
+  <footer class="footer">
+    <p> Made by Team Jarvis++ <span id="year"></span> PlantMate </p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
