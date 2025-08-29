@@ -16,34 +16,36 @@
       <span>GreenDash</span>
     </div>
     <nav id="navbar">
-  <button class="menu-toggle" id="menuToggle">☰</button>
-  <div class="links">
-    <a href="#home" data-route="home">Home</a>
-    <a href="#catalog" data-route="catalog">Plants</a>
-    <a href="#login" data-route="login" class="guestOnly">Login</a>
-    <a href="#signup" data-route="signup" class="guestOnly">Sign Up</a>
-    <a href="#delivery" data-route="delivery" class="guestOnly">Delivery Register</a>
-    <a href="#store" data-route="store" class="guestOnly">Store Register</a>
-    <a href="#profile" data-route="profile" class="authOnly" style="display:none;">Profile</a>
-  </div>
-</nav>
-
-
+      <button class="menu-toggle" id="menuToggle">☰</button>
+      <div class="links">
+        <a href="#home" data-route="home">Home</a>
+        <a href="#catalog" data-route="catalog">Plants</a>
+        <a href="#about" data-route="about">About Us</a>
+        <a href="#contact" data-route="contact">Contact</a>
+        <a href="#login" data-route="login" class="guestOnly">Login</a>
+        <a href="#signup" data-route="signup" class="guestOnly">Sign Up</a>
+        <a href="#delivery" data-route="delivery" class="guestOnly">Delivery Register</a>
+        <a href="#store" data-route="store" class="guestOnly">Store Register</a>
+        <a href="#profile" data-route="profile" class="authOnly" style="display:none;">Profile</a>
+      </div>
+    </nav>
   </header>
 
   <main id="app">
+    <div class="back-button-container">
+      <button class="back-button" onclick="window.history.back()">← Back</button>
+    </div>
+
     <section class="route active" id="home" data-page="home">
       <div class="hero">
         <div class="hero-copy">
-          <h1><span class="stroke">Order Plants</span> Har&nbsp;Ghar&nbsp;Hariyali 🌿</h1>
-          <p>Fresh plants, delivered fast. Handpicked nurseries, eco-friendly packaging, track your delivery live.</p>
-
-          <div class="cta-buttons">
+          <h1 class="animate-in delay-1"><span class="stroke">Order Plants</span> Har&nbsp;Ghar&nbsp;Hariyali 🌿</h1>
+          <p class="animate-in delay-2">Fresh plants, delivered fast. Handpicked nurseries, eco-friendly packaging, track your delivery live.</p>
+          <div class="cta-buttons animate-in delay-3">
             <button class="btn primary" onclick="Router.go('catalog')">Browse Plants</button>
             <button class="btn ghost" onclick="Router.go('gemini')">Ask PlantBot</button>
           </div>
-
-          <ul class="badges">
+          <ul class="badges animate-in delay-4">
             <li>Free potting soil</li>
             <li>1h delivery</li>
             <li>Live order tracking</li>
@@ -51,17 +53,16 @@
           </ul>
         </div>
       </div>
-
       <section class="features">
-        <div class="card glass">
+        <div class="card glass animate-in delay-5">
           <h3>Curated Nurseries</h3>
           <p>We partner with the best local plant stores, so your plants arrive healthy and thriving.</p>
         </div>
-        <div class="card glass">
+        <div class="card glass animate-in delay-6">
           <h3>Care Tips Built‑in</h3>
           <p>Every order includes watering and sunlight guidance. Never guess again.</p>
         </div>
-        <div class="card glass">
+        <div class="card glass animate-in delay-7">
           <h3>Seamless Experience</h3>
           <p>Clean design, quick checkout, and delightful micro‑interactions to wow judges ✨</p>
         </div>
@@ -69,39 +70,61 @@
     </section>
 
     <section class="route" id="catalog" data-page="catalog">
-      <h2 class="section-title">Popular Plants</h2>
-      <div class="grid" id="plantGrid">
+      <h2 class="section-title animate-in">Popular Plants</h2>
+      <div class="carousel-container animate-in delay-1">
+        <div class="carousel-track" id="plantCarouselTrack"></div>
       </div>
     </section>
 
     <section class="route" id="gemini" data-page="gemini">
-      <form class="form glass gemini-chat-form" id="geminiChatForm">
+      <form class="form glass gemini-chat-form animate-in" id="geminiChatForm">
         <h2>Ask PlantBot about plants!</h2>
-        <div class="gemini-chat-box" id="geminiChatBox">
-          </div>
-        <div class="gemini-input-container">
+        <div class="gemini-chat-box" id="geminiChatBox"></div>
+        <div class="gemini-input-container animate-in delay-1">
           <input type="text" name="prompt" required placeholder="Ask about plant care, types, etc." autocomplete="off" />
           <button class="btn primary" type="submit">Send</button>
         </div>
       </form>
     </section>
 
+    <section class="route" id="about" data-page="about">
+      <div class="form glass about-section animate-in">
+        <h2>About GreenDash</h2>
+        <p class="animate-in delay-1">GreenDash is more than just a plant delivery service; we are a community dedicated to bringing the joy of greenery to every home. Our mission is to make plant ownership easy and accessible for everyone, from seasoned gardeners to absolute beginners.</p>
+        <p class="animate-in delay-2">We work closely with local nurseries to ensure every plant is healthy, happy, and ready for its new home. Our eco-friendly packaging and live-tracking delivery system guarantee that your new green companion arrives in perfect condition, every time.</p>
+        <p class="animate-in delay-3">Join us in our mission to create a greener, healthier world, one plant at a time.</p>
+      </div>
+    </section>
+
+    <section class="route" id="contact" data-page="contact">
+      <form class="form glass animate-in" id="contactForm">
+        <h2>Contact Us</h2>
+        <label class="animate-in delay-1">Full Name</label>
+        <input type="text" name="name" required placeholder="Your Name" class="animate-in delay-2" />
+        <label class="animate-in delay-3">Email</label>
+        <input type="email" name="email" required placeholder="your.email@example.com" class="animate-in delay-4" />
+        <label class="animate-in delay-5">Message</label>
+        <textarea name="message" rows="5" required placeholder="Your message..." class="animate-in delay-6"></textarea>
+        <button class="btn primary animate-in delay-7" type="submit">Send Message</button>
+      </form>
+    </section>
+
     <section class="route" id="login" data-page="login">
-      <form class="form glass" id="loginForm">
+      <form class="form glass animate-in" id="loginForm">
         <h2>Login</h2>
-        <label>Email</label>
-        <input type="email" name="email" required placeholder="enter email i'd" />
-        <label>Password</label>
-        <input type="password" name="password" required placeholder="••••••••" />
-        <button class="btn primary" type="submit">Login</button>
-        <p class="alt">New here? <a href="#signup" onclick="Router.go('signup')">Create an account</a></p>
+        <label class="animate-in delay-1">Email</label>
+        <input type="email" name="email" required placeholder="enter email i'd" class="animate-in delay-2" />
+        <label class="animate-in delay-3">Password</label>
+        <input type="password" name="password" required placeholder="••••••••" class="animate-in delay-4" />
+        <button class="btn primary animate-in delay-5" type="submit">Login</button>
+        <p class="alt animate-in delay-6">New here? <a href="#signup" onclick="Router.go('signup')">Create an account</a></p>
       </form>
     </section>
 
     <section class="route" id="signup" data-page="signup">
-      <form class="form glass" id="signupForm">
+      <form class="form glass animate-in" id="signupForm">
         <h2>Create Account</h2>
-        <div class="split">
+        <div class="split animate-in delay-1">
           <div>
             <label>Full Name</label>
             <input type="text" name="name" required placeholder="enter your name" />
@@ -111,19 +134,19 @@
             <input type="tel" name="phone" required placeholder="+91 9XXXXXXXXX" pattern="[0-9+\-\s]{8,}"/>
           </div>
         </div>
-        <label>Email</label>
-        <input type="email" name="email" required placeholder="enter email i'd" />
-        <label>Password</label>
-        <input type="password" name="password" minlength="6" required placeholder="Min 6 characters" />
-        <button class="btn primary" type="submit">Sign Up</button>
-        <p class="alt">Already have an account? <a href="#login" onclick="Router.go('login')">Login</a></p>
+        <label class="animate-in delay-2">Email</label>
+        <input type="email" name="email" required placeholder="enter email i'd" class="animate-in delay-3" />
+        <label class="animate-in delay-4">Password</label>
+        <input type="password" name="password" minlength="6" required placeholder="Min 6 characters" class="animate-in delay-5" />
+        <button class="btn primary animate-in delay-6" type="submit">Sign Up</button>
+        <p class="alt animate-in delay-7">Already have an account? <a href="#login" onclick="Router.go('login')">Login</a></p>
       </form>
     </section>
 
     <section class="route" id="delivery" data-page="delivery">
-      <form class="form glass" id="deliveryForm">
+      <form class="form glass animate-in" id="deliveryForm">
         <h2>Delivery Partner Registration</h2>
-        <div class="split">
+        <div class="split animate-in delay-1">
           <div>
             <label>Full Name</label>
             <input type="text" name="name" required />
@@ -133,25 +156,25 @@
             <input type="tel" name="phone" required placeholder="+91 9XXXXXXXXX" pattern="[0-9+\-\s]{8,}"/>
           </div>
         </div>
-        <label>Vehicle Type</label>
-        <select name="vehicle" required>
+        <label class="animate-in delay-2">Vehicle Type</label>
+        <select name="vehicle" required class="animate-in delay-3">
           <option value="">Select</option>
           <option>Scooter</option>
           <option>Bike</option>
           <option>Cycle</option>
         </select>
-        <label>City</label>
-        <input type="text" name="city" required placeholder="enter city" />
-        <button class="btn primary" type="submit">Register as Delivery Partner</button>
+        <label class="animate-in delay-4">City</label>
+        <input type="text" name="city" required placeholder="enter city" class="animate-in delay-5" />
+        <button class="btn primary animate-in delay-6" type="submit">Register as Delivery Partner</button>
       </form>
     </section>
 
     <section class="route" id="store" data-page="store">
-      <form class="form glass" id="storeForm">
+      <form class="form glass animate-in" id="storeForm">
         <h2>Plant Store Registration</h2>
-        <label>Store Name</label>
-        <input type="text" name="storeName" required placeholder="Green Leaf Nursery" />
-        <div class="split">
+        <label class="animate-in delay-1">Store Name</label>
+        <input type="text" name="storeName" required placeholder="Green Leaf Nursery" class="animate-in delay-2" />
+        <div class="split animate-in delay-3">
           <div>
             <label>Owner Name</label>
             <input type="text" name="owner" required />
@@ -161,27 +184,32 @@
             <input type="tel" name="phone" required placeholder="+91 9XXXXXXXXX" pattern="[0-9+\-\s]{8,}"/>
           </div>
         </div>
-        <label>Address</label>
-        <textarea name="address" rows="3" required placeholder="Street, Area, City, Pincode"></textarea>
-        <label>Specialities</label>
-        <input type="text" name="tags" placeholder="Succulents, Indoor, Air-purifying" />
-        <button class="btn primary" type="submit">Register Store</button>
+        <label class="animate-in delay-4">Address</label>
+        <textarea name="address" rows="3" required placeholder="Street, Area, City, Pincode" class="animate-in delay-5"></textarea>
+        <label class="animate-in delay-6">Specialities</label>
+        <input type="text" name="tags" placeholder="Succulents, Indoor, Air-purifying" class="animate-in delay-7" />
+        <button class="btn primary animate-in delay-8" type="submit">Register Store</button>
       </form>
     </section>
 
     <section class="route" id="profile" data-page="profile">
-  <div class="form glass">
-    <h2>Your Profile</h2>
-    <div id="profileDetails"></div>
-    <button class="btn primary" id="logoutBtn">Logout</button>
-  </div>
-</section>
-
+      <div class="form glass animate-in">
+        <h2>Your Profile</h2>
+        <div id="profileDetails" class="animate-in delay-1"></div>
+        <button class="btn primary animate-in delay-2" id="logoutBtn">Logout</button>
+      </div>
+    </section>
   </main>
 
   <div id="toast"></div>
 
   <footer class="footer">
+    <!-- <div class="social-icons">
+      <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0.447-2.059 2-2.059h2V2.302S16.307 2 15.116 2c-3.216 0-5.327 1.944-5.327 5.56v2.536H6.192v4H9.79v8h4.21V13.5z"/></svg></a>
+      <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M22.46 6c-.85.38-1.76.64-2.72.76.98-.58 1.73-1.5 2.08-2.6-.92.55-1.95.95-3.05 1.17-.87-.93-2.1-1.5-3.5-1.5-2.65 0-4.8 2.15-4.8 4.8 0 .38.04.75.14 1.1-.92-.05-1.74-.24-2.58-.6-.85.38-1.76.64-2.72.76.98-.58 1.73-1.5 2.08-2.6-.92.55-1.95.95-3.05 1.17-.87-.93-2.1-1.5-3.5-1.5-2.65 0-4.8 2.15-4.8 4.8 0 .38.04.75.14 1.1-2.75-.4-5.2-1.9-6.9-4.2-.28.48-.44 1.05-.44 1.66 0 1.65.84 3.1 2.12 3.96-1.53-.05-2.97-.5-4.22-1.2v.06c0 2.32 1.65 4.25 3.84 4.68-.4.1-.8.15-1.2.15-.3 0-.6-.03-.9-.08.6 1.8 2.34 3.1 4.4 3.1-1.6 1.25-3.6 2-5.78 2-1.22 0-2.36-.07-3.48-.2.6 1.8 2.34 3.1 4.4 3.1 5.3 0 9.7-4.3 9.7-9.7 0-.15-.02-.3-.04-.45.67-.48 1.25-1.1 1.7-1.8z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M12 2c-2.716 0-5.419.012-8.12.036C2.652 2.072 2.222 2.275 2.028 2.766 1.834 3.257 1.82 3.79 1.815 4.96c-.004 1.17-.008 2.34-.012 3.51-.004 1.17-.006 2.34-.006 3.51s.002 2.34.006 3.51c.004 1.17.008 2.34.012 3.51.005 1.17.019 1.703.213 2.194.194.49.624.693 1.112.72c2.7.024 5.401.036 8.102.036s5.401-.012 8.102-.036c.488-.027.918-.23 1.112-.72.194-.49.208-1.023.213-2.194.004-1.17.008-2.34.012-3.51.004-1.17.006-2.34.006-3.51s-.002-2.34-.006-3.51c-.004-1.17-.008-2.34-.012-3.51-.005-1.17-.019-1.703-.213-2.194-.194-.49-.624-.693-1.112-.72C17.419 2.012 14.716 2 12 2zm0 1.5c2.68 0 5.36.008 8.04.032.553.004.85.086 1.03.177.18.09.28.21.35.39.07.18.11.45.14.94.02 1.01.036 2.02.046 3.03.01 1.01.016 2.02.016 3.03s-.006 2.02-.016 3.03c-.01 1.01-.026 2.02-.046 3.03-.03 1.01-.07 1.49-.14.94-.07-.18-.17-.3-.35-.39-.18-.09-.47-.173-1.03-.177-2.68-.024-5.36-.032-8.04-.032s-5.36.008-8.04.032c-.56.004-.85.086-1.03.177-.18.09-.28.21-.35.39-.07.18-.11.45-.14.94-.02 1.01-.036 2.02-.046 3.03-.01 1.01-.016 2.02-.016 3.03s.006 2.02.016 3.03c.01 1.01.026 2.02.046 3.03.03 1.01.07 1.49.14.94.07-.18.17-.3.35-.39.18-.09.47-.173 1.03-.177C6.64 21.988 9.32 21.996 12 21.996zM12 7.75c-2.347 0-4.25 1.903-4.25 4.25s1.903 4.25 4.25 4.25 4.25-1.903 4.25-4.25-1.903-4.25-4.25-4.25zm0 1.5c1.517 0 2.75 1.233 2.75 2.75s-1.233 2.75-2.75 2.75-2.75-1.233-2.75-2.75 1.233-2.75 2.75-2.75zm6.5-4.25c-.718 0-1.3.582-1.3 1.3s.582 1.3 1.3 1.3 1.3-.582 1.3-1.3-.582-1.3-1.3-1.3z"/></svg></a>
+      <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.5 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13 12.268h-3v-5.604c0-3.368-4-3.04-4 0v5.604h-3v-11h3v1.765c1.39-2.527 6-2.762 6 2.095v7.14z"/></svg></a>
+    </div> -->
     <p> Made by Team Jarvis++ <span id="year"></span> GreenDash </p>
   </footer>
 
