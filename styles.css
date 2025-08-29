@@ -196,6 +196,23 @@ main {
   padding: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
+ .project {
+  background: var(--glass);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: all 0.4s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.project:hover {
+  transform: scale(1) translateY(-7px);
+}
+
 .features {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -613,6 +630,50 @@ main {
   .btn {
     width: 100%;
   }
+  /* Hamburger to Cross Animation - New Code */
+  .menu-toggle {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 11;
+  }
+  /* .menu-toggle::before,
+  .menu-toggle::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: var(--fg);
+    border-radius: 2px;
+    transition: transform 0.3s ease, top 0.3s ease, bottom 0.3s ease;
+  } */
+  .menu-toggle::before {
+    top: 6px;
+  }
+  .menu-toggle::after {
+    bottom: 6px;
+  }
+  .menu-toggle.open::before {
+    top: 50%;
+    transform: rotate(45deg);
+    background-color: #ff5959;
+  }
+  .menu-toggle.open::after {
+    bottom: 50%;
+    transform: rotate(-45deg);
+    background-color: #ff5959;
+  }
+  /* Menu button par se hover effect hatane ke liye */
+.menu-toggle:hover {
+  transform: none !important;
+  cursor: default !important;
+}
 }
 @media (max-width: 640px) {
   .split {
