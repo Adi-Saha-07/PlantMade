@@ -237,12 +237,88 @@ function toast(msg, danger=false){
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// OpenAI API Integration
+async function setupOpenAIChat() {
+  const OPENAI_API_KEY = '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'; 
+  if (!OPENAI_API_KEY) {
+    console.error("OpenAI API key is not set. Please update the OPENAI_API_KEY variable in app.js.");
+    return;
+  }
+
+  const chatForm = document.getElementById('geminiChatForm');
+  const chatBox = document.getElementById('geminiChatBox');
+
+  const addMessageToChat = (text, sender) => {
+    const messageEl = document.createElement('div');
+    messageEl.className = `chat-message ${sender}`;
+    messageEl.textContent = text;
+    chatBox.appendChild(messageEl);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  };
+  
+  const showTypingIndicator = () => {
+    const indicator = document.createElement('div');
+    indicator.className = 'chat-message gemini typing-indicator';
+    indicator.textContent = 'OpenAI is thinking...';
+    chatBox.appendChild(indicator);
+    chatBox.scrollTop = chatBox.scrollHeight;
+    return indicator;
+  };
+
+  if (chatForm) {
+    chatForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const promptInput = e.target.prompt;
+      const prompt = promptInput.value.trim();
+
+      if (!prompt) return;
+
+      addMessageToChat(prompt, 'user');
+      promptInput.value = '';
+
+      const typingIndicator = showTypingIndicator();
+
+      try {
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${OPENAI_API_KEY}`
+          },
+          body: JSON.stringify({
+            model: "gpt-3.5-turbo",
+            messages: [{ role: "user", content: prompt }]
+          })
+        });
+
+        const data = await response.json();
+        
+        typingIndicator.remove();
+
+        if (response.ok) {
+          const aiResponse = data.choices[0].message.content;
+          addMessageToChat(aiResponse, 'gemini');
+        } else {
+          console.error("Error from OpenAI API:", data);
+          addMessageToChat("Sorry, I'm having trouble connecting to OpenAI. Please check your API key or try again later.", 'gemini');
+        }
+
+      } catch (error) {
+        typingIndicator.remove();
+        console.error("Error connecting to OpenAI:", error);
+        addMessageToChat("An unexpected error occurred. Please try again later.", 'gemini');
+      }
+    });
+  }
+}
+
 Router.init();
 renderCatalog();
 setupForms();
 particles();
 updateNavbar();
 loadProfile();
+setupOpenAIChat(); 
 // Mobile menu toggle
 document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.getElementById('menuToggle');
